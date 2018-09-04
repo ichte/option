@@ -1,0 +1,32 @@
+<?
+/**
+ * @var $this PhpRenderer
+ */
+
+?>
+
+
+<div class="p-4 w-100">
+    <?
+    echo $this->pageBreadcrumbs()->setItems([
+        'Options' => $this->url('ahdconfig'),
+        $this->group->name => '#'
+
+    ])->renderRow();
+    ?>
+
+<div class="card">
+    <div class="card-block p-2">
+        <form method="POST">
+            <?foreach ($this->options as $op):?>
+            <?=$this->partial('ichte/option/option_temp', ['option'=>$op])?>
+            <?endforeach?>
+            <input type="submit" value="Save" class="btn btn-danger pull-right" />
+        </form>
+    </div>
+    <div class="card-footer text-muted">
+        <a href="<?=$this->url('ahdconfig', ['action'=>'addoption'], ['query'=> ['groupoption'=>$this->group->id]])?>">Thêm Option mới</a>
+
+    </div>
+</div>
+</div>

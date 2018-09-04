@@ -1,0 +1,28 @@
+ <?php 
+  $this->headTitle('Cập nhật nhóm ');
+ ?>
+ 
+<div class="p-4">
+<h1>Cập nhật nhóm thiết lập</h1>
+<?
+ //$form->setAttribute('action', $this->url('ahdconfig', array('action' => 'editgroup'),array('query'=>array('id'=>))));
+ $form->setAttribute('class','form');
+ $form->prepare(); 
+ echo $this->form()->openTag($form);
+?>
+<fieldset class="form-group">
+    <label>ID của nhóm</label>    
+    <?=$this->formRow($form->get('id'))?>
+</fieldset>
+<fieldset class="form-group">
+    <label>Tên nhóm</label> 
+    <?=$this->formRow($form->get('name'))?> 
+</fieldset>
+<fieldset class="form-group">
+<?=$this->formSubmit($form->get('submit'))?>
+<input type="submit" name="submit" style="margin-left: 10px;" id="submitbutton" class="btn btn-danger" value="Delete">
+</fieldset>
+ 
+
+<?=$this->form()->closeTag()?>
+</div> 

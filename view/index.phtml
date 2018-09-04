@@ -1,0 +1,95 @@
+<div class="p-2 w-100">
+    <div class="card">
+
+        <div class="card-block p-4">
+        <h4 class="card-title">Options <small>Các thiết lập cho website</small></h4>
+
+        <?foreach ($this->groups as $gr):?>
+            <h4 class="p-a-1">
+                <a href="<?=$this->url('ahdconfig', ['action'=>'conf'], ['query'=> ['id'=>$gr->id]])?>" class="btn btn-danger col-8"><?=$gr->name?></a>
+                <a href="<?=$this->url('ahdconfig', ['action'=>'editgroup'], ['query'=> ['id'=>$gr->id]])?>" class="btn btn-secondary btn-sm" style="float: right;">Edit</a>
+            </h4>
+        <?endforeach?>
+
+            <h4 class="p-a-1">
+                <a href="<?=$this->url('ahdconfig', ['action'=>'resetall'])?>" class="btn btn-danger col-8">Reset all setting</a>
+            </h4>
+
+    </div>
+
+        <div class="card-block p-4">
+        <h4 class="card-title">Manger</h4>
+
+         <h4 class="p-1">
+            <a href="<?=$this->url('ahdconfig', ['action'=>'pluginviewer'])?>" class="btn btn-success col-8">Quản lý Plugin viewer</a>
+        </h4>
+      </div>
+
+        <div class="card-footer text-muted">
+            <a  href="<?=$this->url('ahdconfig', ['action'=>'addgroup'])?>"><i class="fa fa-plus" aria-hidden="true"></i>
+                Thêm nhóm cấu hình mới</a>
+        </div>
+
+    </div>
+</div>
+<div class="p-4 w-100">
+<table class="table w-100">
+    <tr>
+        <th>ID</th>
+        <th>Giá trị</th>
+        <th>Thông tin</th>
+    </tr>
+    <?
+foreach ($listoption as $groupcontain) {
+    /**
+     * @var $group \XT\Option\Model\Group
+     * @var $item \XT\Option\Model\Option
+     */
+    $group = $groupcontain['group'];
+    $items = $groupcontain['item'];
+    ?>
+    <tr>
+        <td colspan="3" class="text-danger" style="font-weight: bold"><?=$group->getId().'  <small>'.$group->getName().'</small>'?></td>
+    </tr>
+    <?
+
+    foreach ($items as $item) {
+        ?>
+        <tr>
+            <td><code><?=$item->getOptionId()?></code></td>
+            <td><small><?=$item->getOptionValue()?></small></td>
+            <td><small><?=$item->getOptionName()?><br><?=$item->getOptionDes()?></small></td>
+
+        </tr>
+
+        <?
+
+    }
+
+
+
+}
+
+?>
+    </table>
+</div>
+
+
+<div class="w-100 p-4">
+    <h3>Các file config backup</h3>
+    <a href="<?=$this->url('ahdconfig', ['action'=>'removeallbackup'])?>" class="btn btn-secondary btn-sm pull-right mb-1">Remove All backup</a>
+
+    <table class="table mt-1">
+    <? foreach ($listfile as $file): ?>
+        <tr>
+            <td><?=$file['file']?></td>
+            <td><?=$file['date']?></td>
+            <td>
+                <a href="<?=$this->url('ahdconfig', ['action'=>'removebackup'], ['query'=> ['id'=>$file['file']]])?>" class="btn btn-secondary btn-sm">Xóa</a>
+                <a href="<?=$this->url('ahdconfig', ['action'=>'restorebackup'], ['query'=> ['id'=>$file['file']]])?>" class="btn btn-secondary btn-sm">Restore</a>
+
+            </td>
+        </tr>
+    <?endforeach;?>
+    </table>
+</div>

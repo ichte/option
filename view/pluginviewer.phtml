@@ -1,0 +1,31 @@
+<div class="p-2">
+<h5>Quản lý Plugin Viewer</h5>
+<div class="card">
+<div class="card-block">
+ <?foreach ($this->plugins as $gr):?>     
+      <span  data-url="<?=$gr['file']?>" class="m-1 plugin btn btn-<?if($gr['ext']=='php') echo 'danger'; else echo 'secondary';?> col-lg-3 m-a-1"><?=$gr['name']?></span>
+  <?endforeach?> 
+</div>
+</div>
+</div>
+<div class="btn-group btn-group-sm bg-info p-1">
+ 
+</div>
+<script>
+$('.plugin').click(function(){
+    url = $(this).attr('data-url');
+
+    $.ajax({
+      method: "POST",
+      url: location.url,
+      data: { plugin: url }
+    })
+      .done(function( msg ) {
+         location.reload();
+      });
+    
+    
+    
+});
+
+</script>

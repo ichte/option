@@ -1,0 +1,25 @@
+<?php
+$this->headTitle('Thêm mới nhóm tùy chọn');
+?>
+
+<div class="p-4">
+    <h1>Thêm mới nhóm thiết lập</h1>
+    <?
+    $form->setAttribute('action', $this->url('ahdconfig', ['action' => 'addgroup']));
+    $form->setAttribute('class', 'form');
+    $form->prepare();
+    echo $this->form()->openTag($form);
+    ?>
+    <fieldset class="form-group">
+        <label>ID của nhóm</label>
+        <?= $this->formRow($form->get('id')) ?>
+    </fieldset>
+    <fieldset class="form-group">
+        <label>Tên nhóm</label>
+        <?= $this->formRow($form->get('name')) ?>
+    </fieldset>
+    <fieldset class="form-group">
+        <?= $this->formSubmit($form->get('submit')) ?>
+    </fieldset>
+    <?= $this->form()->closeTag() ?>
+</div>

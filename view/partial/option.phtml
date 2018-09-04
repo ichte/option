@@ -1,0 +1,36 @@
+<div class="form-group row">
+   <label for="<?=$option->option_id?>" class="col-sm-5 form-control-label text-right">
+   <a  href="<?=$this->url('ahdconfig', ['action'=>'editoption'], ['query'=> ['groupoption'=>$option->group_id,'optionid'=>$option->option_id]])?>"><?=$option->option_name?></a>
+   </label>
+   <div class="col-sm-7">
+     <?
+       if ($option->option_des != '') echo "<span style=\"font-size:11px\">$option->option_des</span>";
+       switch ($option->option_type){
+           case 'boolean':
+             if ($option->option_value)                         
+             echo "<div class=\"checkbox\">
+                    <label>
+                        <input checked value=\"1\" type=\"radio\" id=\"$option->option_id\" name=\"$option->option_id\">chọn
+                        <input value=\"0\" type=\"radio\" id=\"$option->option_id\" name=\"$option->option_id\">không chọn
+                     </label>
+                   </div>";   
+             else
+             echo "<div class=\"checkbox\">
+                      <label>
+                        <input  value=\"1\" type=\"radio\" id=\"$option->option_id\" name=\"$option->option_id\">chọn
+                        <input checked value=\"0\" type=\"radio\" id=\"$option->option_id\" name=\"$option->option_id\">không chọn
+                     </label>
+                   </div>";   
+           break; 
+           case 'string':
+                echo "<textarea  type=\"text\" class=\"form-control\" id=\"$option->option_id\" name=\"$option->option_id\">$option->option_value</textarea>";
+           break;
+         default:
+            echo "<input value=\"$option->option_value\"  type=\"text\" class=\"form-control\" id=\"$option->option_id\" name=\"$option->option_id\">";
+         break;
+       } 
+       
+     ?> 
+   </div>
+   
+</div>

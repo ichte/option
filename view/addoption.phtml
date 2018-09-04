@@ -1,0 +1,43 @@
+
+ <?php
+  $this->headTitle('Thêm Tùy chọn');
+ ?>
+ 
+<div class="p-4 w-100">
+<h3><small>Thêm option cho mục</small><br><?=$this->group->name?></h3>
+
+<?
+ //$form->setAttribute('action', $this->url('ahdconfig', array('action' => 'addoption'),array('query'=>array('groupoption'=>$this->group->id))));
+ $form->setAttribute('class','form');
+ $form->prepare(); 
+ echo $this->form()->openTag($form);
+?>
+<fieldset class="form-group">
+    <label>ID</label>
+    <?=$this->formRow($form->get('option_id'))?>
+</fieldset>
+<fieldset class="form-group">
+    <label>Tên mô tả</label>
+    <?=$this->formRow($form->get('option_name'))?> 
+</fieldset>
+<fieldset class="form-group">
+    <label>Kiểu dữ liệu</label> 
+    <?=$this->formRow($form->get('option_type'))?> 
+</fieldset>
+<fieldset class="form-group">
+    <label>Mô tả Option</label> 
+    <?=$this->formRow($form->get('option_des'))?> 
+</fieldset>
+<?=$this->formHidden($form->get('group_id'))?>  
+
+
+<fieldset class="form-group">
+<?=$this->formSubmit($form->get('submit'))?>
+<?if (isset($option)):?>
+    <a 
+     href="<?=$this->url('ahdconfig', ['action'=>'deleteoption'], ['query'=> ['idoption'=>$option->option_id]])?>"
+     class="btn btn-danger">Xóa</a>
+<?endif?>
+</fieldset>
+<?=$this->form()->closeTag()?>
+</div> 

@@ -1,5 +1,5 @@
 {
-    "name": "ichte/xt-option",
+    "name": "ichte/xtlab-option",
     "description": "Option site",
     "type": "module",
     "version": "1.0",
@@ -20,7 +20,7 @@
 
     "autoload": {
         "psr-4": {
-            "Ichte\\Option\\": "src/"
+            "XT\\Option\\": "src/"
         }
     }
 
